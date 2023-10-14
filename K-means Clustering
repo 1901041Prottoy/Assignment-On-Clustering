@@ -1,0 +1,23 @@
+# Select the columns you want for clustering
+X = data[['Annual Income (k$)', 'Spending Score (1-100)']].values
+
+# Range of K values to consider
+k_values = range(1, 16)
+
+# Initialize an empty list to store SSE values
+sse = []
+
+# Perform K-means clustering for different values of K and calculate SSE
+for k in k_values:
+    kmeans = KMeans(n_clusters=k, random_state=0)
+    kmeans.fit(X)
+    sse.append(kmeans.inertia_)
+
+# Plot the SSE values for different K values
+plt.figure(figsize=(8, 4))
+plt.plot(k_values, sse, marker='o', linestyle='--')
+plt.xlabel('Number of Clusters (K)')
+plt.ylabel('Sum of Squared Errors (SSE)')
+plt.title('Elbow Method for Optimal K')
+plt.grid(True)
+plt.show() 
