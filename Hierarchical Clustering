@@ -1,0 +1,11 @@
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+# Select the columns you want for clustering
+X = data[['Annual Income (k$)', 'Spending Score (1-100)']].values
+
+# Perform agglomerative hierarchical clustering
+dendrogram = dendrogram(linkage(X, method='ward'))
+plt.title('Dendrogram')
+plt.xlabel('Customers')
+plt.ylabel('Euclidean Distances')
+plt.show()
